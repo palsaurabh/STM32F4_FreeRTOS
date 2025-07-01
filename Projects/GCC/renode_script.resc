@@ -1,0 +1,7 @@
+
+using sysbus
+mach create "stm32"
+machine LoadPlatformDescription @platforms/boards/stm32f4_discovery.repl
+sysbus LoadELF @/home/user/wksp/renode_freertos/FreeRTOS/FreeRTOS/Demo/CORTEX_MPU_STM32L4_Discovery_GCC_IAR_Keil/Projects/GCC/build/RTOSDemo.elf
+start
+
