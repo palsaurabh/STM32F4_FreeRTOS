@@ -12,7 +12,7 @@ ST_CODE_DIR			  :=	$(abspath ../../ST_Code)
 
 ASMS = Startup/startup_stm32f407vg.S
 
-SOURCE_FILES          +=    Startup/syscalls.c  Startup/sysmem.c
+# SOURCE_FILES          +=    Startup/syscalls.c  Startup/sysmem.c
 SOURCE_FILES		  +=	$(wildcard $(ST_CODE_DIR)/Core/Src/*.c)
 SOURCE_FILES          +=	$(wildcard $(ST_CODE_DIR)/Drivers/STM32F4xx_HAL_Driver/Src/*.c)
 SOURCE_FILES          +=	$(wildcard $(ST_CODE_DIR)/Drivers/BSP/STM32F4-Discovery/*.c)
@@ -57,9 +57,9 @@ CFLAGS                +=    $(INCLUDE_DIRS)
 
 LDFLAGS                =    -T ./STM32L475VGTX_FLASH.ld
 LDFLAGS               +=    -Xlinker -Map=${BUILD_DIR}/output.map
-LDFLAGS               +=    -Xlinker --gc-sections
-# LDFLAGS               +=    -nostartfiles -nostdlib -nolibc -nodefaultlibs
-LDFLAGS               +=    -lc 
+# LDFLAGS               +=    -Xlinker --gc-sections
+LDFLAGS               +=    -nostdlib -nolibc -nodefaultlibs
+# LDFLAGS               +=    -lc 
 
 ifeq ($(DEBUG), 1)
     CFLAGS                +=     -g3 -Og -ffunction-sections -fdata-sections -save-temps=obj
@@ -67,12 +67,12 @@ else
     CFLAGS                +=     -Os -ffunction-sections -fdata-sections
 endif
 
-ifeq ($(PICOLIBC), 1)
-    CFLAGS                +=     --specs=picolibc.specs -DPICOLIBC_INTEGER_PRINTF_SCANF
-   LDFLAGS                +=     --specs=picolibc.specs -DPICOLIBC_INTEGER_PRINTF_SCANF
-endif
+# ifeq ($(PICOLIBC), 1)
+#     CFLAGS                +=     --specs=picolibc.specs -DPICOLIBC_INTEGER_PRINTF_SCANF
+#    LDFLAGS                +=     --specs=picolibc.specs -DPICOLIBC_INTEGER_PRINTF_SCANF
+# endif
 
-OBJ_FILES             :=    $(SOURCE_FILES:%.c=$(BUILD_DIR)/%.o) $(ASMS:.S=.o)
+OBJ_FILES             :=    $(SOURCE_FILES:%.c=$(BUILD_DIR)/%.o) #$(ASMS:.S=.o)
 
 .PHONY: clean
 

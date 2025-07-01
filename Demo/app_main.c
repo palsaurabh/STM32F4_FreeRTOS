@@ -53,7 +53,7 @@ void vApplicationStackOverflowHook( TaskHandle_t pxTask, char *pcTaskName )
 	function will automatically get called if a task overflows its stack. */
 	( void ) pxTask;
 	( void ) pcTaskName;
-	printf("Task Stask Overflow\n");
+	// printf("Task Stask Overflow\n");
 	for( ;; );
 }
 /*-----------------------------------------------------------*/
@@ -63,7 +63,7 @@ void vApplicationMallocFailedHook( void )
 	/* If configUSE_MALLOC_FAILED_HOOK is set to 1 then this function will
 	be called automatically if a call to pvPortMalloc() fails.  pvPortMalloc()
 	is called automatically when a task, queue or semaphore is created. */
-	printf("Malloc failed\n");
+	// printf("Malloc failed\n");
 	for( ;; );
 }
 /*-----------------------------------------------------------*/
